@@ -1,0 +1,26 @@
+POST http://localhost:3000/api/users
+content-type: application/json
+
+{
+    "name": "sample2",
+    "email": "sample2@gmail.com",
+    "password": "123"
+}
+
+###
+
+GET http://localhost:3000/api/users
+
+###
+GET http://localhost:3000/api/users/643e9341a8d05ba380a6a2b5
+
+###
+PATCH  http://localhost:3000/api/users/643e9341a8d05ba380a6a2b5
+content-type: application/json
+
+{
+    "password": "updated_password"
+}
+
+###
+DELETE  http://localhost:3000/api/users/643e9341a8d05ba380a6a2b5
