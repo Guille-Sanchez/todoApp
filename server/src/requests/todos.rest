@@ -1,0 +1,25 @@
+POST http://localhost:3000/api/todos/643eaf9c195add1b9b990abd
+content-type: application/json
+
+{
+    "body": "New note",
+    "userId": "643eaf9c195add1b9b990abd"
+}
+
+###
+
+GET http://localhost:3000/api/todos
+
+###
+GET http://localhost:3000/api/todos/643eafd6195add1b9b990ac0
+
+###
+PATCH  http://localhost:3000/api/todos/643eafd6195add1b9b990ac0
+content-type: application/json
+
+{
+    "body": "updated_Todo"
+}
+
+###
+DELETE  http://localhost:3000/api/users/643e9fad0a5d67bfb78f541c
