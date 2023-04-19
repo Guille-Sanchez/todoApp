@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { AuthTokenContext } from '../context/AuthToken'
+import { AuthTokenContext } from '../../context/AuthToken'
 
 export const SignIn = (): JSX.Element => {
   const [error, setError] = useState<string | null>(null)
@@ -26,9 +26,9 @@ export const SignIn = (): JSX.Element => {
       })
       .then((data) => {
         setError(() => null)
+        localStorage.setItem('authToken', data.token)
         setAuthToken(() => data.token)
-
-        // redirect to home page
+        // Redirects to home
         window.location.href = '/'
       })
       .catch((err) => {

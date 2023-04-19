@@ -1,9 +1,9 @@
 POST http://localhost:3000/api/todos/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODQ2NjMwLCJleHAiOjE2ODE4NDg0MzB9.Nb_VhCzlvWH5nIaHbMyILdrEPo_lRTs6Hy9_vt4ARso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQwNGE2YmE1NWM4MTA4Mzg2Mzk3NWIiLCJlbWFpbCI6InNhbXBsZTNAZ21haWwuY29tIiwiaWF0IjoxNjgxOTM0OTg5LCJleHAiOjE2ODE5MzY3ODl9.DoWkEIIn1r7UZaxGcoflnzlIenaXTV9cXWi1g-zCwbk
 
 {
-    "body": "New note user1"
+    "body": "This note belongs to user3"
 }
 
 ###

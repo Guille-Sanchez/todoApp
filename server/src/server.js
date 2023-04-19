@@ -13,7 +13,6 @@ app.use(cors())
 app.use('/api/users', userRouter)
 app.use('/api/todos', todoRouter)
 
-
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(process.env.PORT, () => {

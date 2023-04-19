@@ -2,8 +2,8 @@ POST http://localhost:3000/api/users
 content-type: application/json
 
 {
-    "name": "sample2",
-    "email": "sample2@gmail.com",
+    "name": "sample3",
+    "email": "sample3@gmail.com",
     "password": "123"
 }
 
@@ -20,7 +20,7 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODUwMDczLCJleHAiOjE2ODE4NTE4NzN9.IiHpOl84k1Q6FWaVVjrwESMIlL1U8D5YQRgf8vobJyM
 
 {
-    "name": "user1"
+    "name": "user2"
 }
 
 ###
@@ -31,7 +31,7 @@ POST http://localhost:3000/api/users/login
 content-type: application/json
 
 {
-    "email": "sample2@gmail.com",
+    "email": "sample3@gmail.com",
     "password": "123"
 }
 

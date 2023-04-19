@@ -11,10 +11,9 @@ const userSchema = new Schema({
     type: [mongoose.Types.ObjectId],
     ref: 'Todo'
   }
-  },
-  { timeStamps: true }
+},
+{ timeStamps: true }
 )
-
 
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(mongooseUniqueValidator)

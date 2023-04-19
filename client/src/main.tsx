@@ -8,9 +8,9 @@ import { AuthTokenProvider } from './context/AuthToken'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-    <AuthTokenProvider>
-      <App />
-    </AuthTokenProvider>
+      <AuthTokenProvider>
+        <App />
+      </AuthTokenProvider>
     </BrowserRouter>
   </React.StrictMode>
 )
