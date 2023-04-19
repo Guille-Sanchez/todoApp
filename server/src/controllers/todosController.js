@@ -23,7 +23,7 @@ export const getTodo = (req, res) => {
 
 export const createTodo = (req, res) => {
   const { body } = req.body
-  const userId = req.params.userId
+  const userId = req.userId
 
   if (!body || !userId) {
     res.status(400).json({
@@ -62,6 +62,14 @@ export const createTodo = (req, res) => {
 }
 
 export const updateTodo = (req, res) => {
+  const userId = req.userId
+
+  if (!userId) {
+    res.status(401).json({
+      message: 'Unauthorized action'
+    }).end()
+  }
+
   Todo.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
     .then((todo) => {
       res.status(200).json(todo)

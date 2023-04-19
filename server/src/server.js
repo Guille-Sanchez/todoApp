@@ -3,13 +3,16 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import userRouter from './routes/userRoutes.js'
 import todoRouter from './routes/todoRoutes.js'
+import cors from 'cors'
 
 dotenv.config()
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.use('/api/users', userRouter)
 app.use('/api/todos', todoRouter)
+
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {

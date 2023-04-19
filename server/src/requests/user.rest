@@ -12,15 +12,30 @@ content-type: application/json
 GET http://localhost:3000/api/users
 
 ###
-GET http://localhost:3000/api/users/643eaf9c195add1b9b990abd
+GET http://localhost:3000/api/users/643ed61d03686481ab99c2ac
 
 ###
-PATCH  http://localhost:3000/api/users/643e9341a8d05ba380a6a2b5
+PATCH  http://localhost:3000/api/users/
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODUwMDczLCJleHAiOjE2ODE4NTE4NzN9.IiHpOl84k1Q6FWaVVjrwESMIlL1U8D5YQRgf8vobJyM
 
 {
-    "password": "updated_password"
+    "name": "user1"
 }
 
 ###
 DELETE  http://localhost:3000/api/users/643e9fad0a5d67bfb78f541c
+
+###
+POST http://localhost:3000/api/users/login
+content-type: application/json
+
+{
+    "email": "sample2@gmail.com",
+    "password": "123"
+}
+
+###
+POST http://localhost:3000/api/users/logout
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODQ4ODY2LCJleHAiOjE2ODE4NTA2NjZ9.JSIVGqWwPlVlCunCQ5JixJHW2qJ4UPheKiABwABdPRc

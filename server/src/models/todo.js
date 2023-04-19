@@ -11,4 +11,12 @@ const todoSchema = new Schema({
 { timeStamps: true }
 )
 
+todoSchema.set('toJSON', {
+  transform: (document, returnObject) => {
+    returnObject.id = returnObject._id
+    delete returnObject._id
+    delete returnObject.__v
+  }
+})
+
 export const Todo = mongoose.model('Todo', todoSchema)

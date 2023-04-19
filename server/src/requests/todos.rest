@@ -1,9 +1,9 @@
-POST http://localhost:3000/api/todos/643eaf9c195add1b9b990abd
+POST http://localhost:3000/api/todos/
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODQ2NjMwLCJleHAiOjE2ODE4NDg0MzB9.Nb_VhCzlvWH5nIaHbMyILdrEPo_lRTs6Hy9_vt4ARso
 
 {
-    "body": "New note",
-    "userId": "643eaf9c195add1b9b990abd"
+    "body": "New note user1"
 }
 
 ###
@@ -14,8 +14,10 @@ GET http://localhost:3000/api/todos
 GET http://localhost:3000/api/todos/643eafd6195add1b9b990ac0
 
 ###
-PATCH  http://localhost:3000/api/todos/643eafd6195add1b9b990ac0
+PATCH  http://localhost:3000/api/todos/
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDNlZDYxZDAzNjg2NDgxYWI5OWMyYWMiLCJlbWFpbCI6InNhbXBsZTJAZ21haWwuY29tIiwiaWF0IjoxNjgxODQ2NjMwLCJleHAiOjE2ODE4NDg0MzB9.Nb_VhCzlvWH5nIaHbMyILdrEPo_lRTs6Hy9_vt4ARso
+
 
 {
     "body": "updated_Todo"

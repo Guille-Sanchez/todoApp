@@ -1,18 +1,15 @@
 import { User } from '../models/user.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const getUsers = (req, res) => {
   User.find()
     .then((users) => {
       const formattedUsers = users.map((user) => {
-        console.log(user)
-
         const formattedUser = user.toJSON()
         delete formattedUser.password
-        delete formattedUser.__v
         return formattedUser
       })
-      console.log(formattedUsers)
       res.status(200).json(formattedUsers)
     })
     .catch((err) => {
@@ -22,8 +19,11 @@ export const getUsers = (req, res) => {
 
 export const getUser = (req, res) => {
   User.find({ _id: req.params.id }).populate('todos')
-    .then((users) => {
-      res.status(200).json(users)
+    .then((user) => {
+      const formattedUser = user[0].toJSON()
+
+      delete formattedUser.password
+      res.status(200).json(formattedUser)
     })
     .catch((err) => {
       res.status(400).json(err)
@@ -42,7 +42,6 @@ export const createUser = (req, res) => {
 
   bcrypt.hash(password, 10)
     .then((hashPassword) => {
-      console.log(hashPassword)
       const newUser = new User({
         name,
         email,
@@ -66,7 +65,14 @@ export const createUser = (req, res) => {
 }
 
 export const updateUser = (req, res) => {
-  User.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
+  const userId = req.userId
+  if (!userId) {
+    res.status(401).res({
+      message: 'Unauthorized'
+    }).end()
+  }
+
+  User.findOneAndUpdate({ _id: userId }, { $set: req.body }, { new: true }, { runValidators: true, context: 'query' })
     .then((users) => {
       res.status(200).json(users)
     })
@@ -76,7 +82,14 @@ export const updateUser = (req, res) => {
 }
 
 export const deleteUser = (req, res) => {
-  User.findByIdAndDelete({ _id: req.params.id })
+  const userId = req.userId
+  if (!userId) {
+    res.status(401).res({
+      message: 'Unauthorized'
+    }).end()
+  }
+
+  User.findByIdAndDelete({ _id: userId })
     .then(() => {
       res.status(200).json({
         success: true,
@@ -86,4 +99,55 @@ export const deleteUser = (req, res) => {
     .catch((err) => {
       res.status(400).json(err)
     })
+}
+
+export const loginUser = (req, res) => {
+  const { email, password } = req.body
+  if (!email || !password) {
+    res.status(400).json({
+      message: 'Please provide all required fields'
+    }).end()
+    return
+  }
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        res.status(400).json({
+          message: 'User not found'
+        })
+        return
+      }
+
+      bcrypt.compare(password, user.password)
+        .then((isMatch) => {
+          if (!isMatch) {
+            res.status(401).json({
+              message: 'Invalid credentials'
+            })
+            return
+          }
+          const userWithoutPassword = user.toJSON()
+          delete userWithoutPassword.password
+
+          // Create a JWT token with the user ID as the payload
+          const token = jwt.sign({ userId: user._id, email },
+            process.env.JWT_KEY,
+            { expiresIn: '30m' })
+
+          // Send the token to the client
+          res.status(200).json({ token })
+        })
+        .catch((err) => {
+          res.status(400).json(err)
+        })
+    })
+    .catch((err) => {
+      res.status(400).json(err)
+    })
+}
+
+export const logoutUser = (req, res) => {
+  res.clearCookie('token')
+  res.status(200).json({ message: 'Logout successful' })
 }
